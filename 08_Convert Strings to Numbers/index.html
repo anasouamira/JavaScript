@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Number Conversion in JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input,
+        button {
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Number Conversion Examples</h2>
+
+    <label>Enter a string number:</label><br>
+    <input type="text" id="stringInput" placeholder="e.g. 123.45"><br>
+    <button onclick="convertStringToNumber()">Convert to Number</button>
+
+    <div id="numberResult" class="result"></div>
+
+    <hr>
+
+    <label>Enter a number:</label><br>
+    <input type="number" id="numberInput" placeholder="e.g. 255"><br>
+    <button onclick="convertNumberToString()">Convert to String and Other Bases</button>
+
+    <div id="stringResult" class="result"></div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
