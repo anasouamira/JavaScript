@@ -13,6 +13,8 @@ Slice (1, 4): ${str.slice(1, 4)} <br>
 Replace 'l' with 'x': ${str.replace('l', 'x')} <br>
 Trimmed: "${str.trim()}" <br>
 Split by space: ${JSON.stringify(str.split(" "))} <br>
+Substring (1, 4): ${str.substring(1, 4)} <br>
+Substr (1, 4): ${str.substr(1, 4)} <br>
 `;
 
     document.getElementById("stringResult").innerHTML = output;
