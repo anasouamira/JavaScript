@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Navigation DOM</title>
+</head>
+<body>
+
+  <div id="bloc">
+    <h2 id="titre">Titre</h2>
+    <p id="para">Paragraphe</p>
+    <span id="frere">Frère</span>
+  </div>
+
+  <button onclick="naviguer()">Explorer le DOM</button>
+
+  <script>
+    function naviguer() {
+      let para = document.getElementById("para");
+
+      // parentNode
+      console.log("Parent :", para.parentNode.nodeName);
+
+      // previousElementSibling
+      console.log("Élément précédent :", para.previousElementSibling.nodeName);
+
+      // nextElementSibling
+      console.log("Élément suivant :", para.nextElementSibling.nodeName);
+
+      // firstElementChild du parent
+      console.log("Premier enfant du parent :", para.parentNode.firstElementChild.nodeName);
+    }
+  </script>
+
+</body>
+</html>
