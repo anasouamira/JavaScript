@@ -2,32 +2,26 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Remplacer un élément</title>
+  <title>Suppression d'élément</title>
 </head>
 <body>
 
-  <!-- Conteneur avec un élément initial -->
-  <div id="parent">
-    <h2 id="aChanger">Ancien Titre</h2>
-  </div>
+  <ul id="liste">
+    <li>Élément 1</li>
+    <li class="aSupprimer">Élément 2</li>
+    <li>Élément 3</li>
+  </ul>
 
-  <!-- Bouton pour déclencher le remplacement -->
-  <button onclick="remplacer()">Remplacer</button>
+  <button onclick="supprimer()">Supprimer Élément</button>
 
   <script>
-    function remplacer() {
-      // Sélection du parent
-      let parent = document.getElementById("parent");
+    function supprimer() {
+      let list = document.getElementById("liste");
+      let items = document.querySelectorAll(".aSupprimer");
 
-      // Sélection de l'élément à remplacer
-      let ancien = document.getElementById("aChanger");
-
-      // Création d'un nouvel élément <h1>
-      let nouveau = document.createElement("h1");
-      nouveau.textContent = "Nouveau Titre Remplaçant";
-
-      // Remplacement de l’ancien par le nouveau
-      parent.replaceChild(nouveau, ancien);
+      for (let item of items) {
+        list.removeChild(item);
+      }
     }
   </script>
 
