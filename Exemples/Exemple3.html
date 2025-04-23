@@ -2,29 +2,32 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Ajouter un élément</title>
+  <title>Remplacer un élément</title>
 </head>
 <body>
 
-  <!-- Zone cible pour ajouter des éléments dynamiquement -->
-  <div id="zone"></div>
+  <!-- Conteneur avec un élément initial -->
+  <div id="parent">
+    <h2 id="aChanger">Ancien Titre</h2>
+  </div>
 
-  <!-- Bouton pour déclencher la création -->
-  <button onclick="ajouterParagraphe()">Ajouter un paragraphe</button>
+  <!-- Bouton pour déclencher le remplacement -->
+  <button onclick="remplacer()">Remplacer</button>
 
   <script>
-    function ajouterParagraphe() {
-      // Sélectionner l'élément parent
-      let zone = document.getElementById("zone");
+    function remplacer() {
+      // Sélection du parent
+      let parent = document.getElementById("parent");
 
-      // Créer un nouvel élément <p>
-      let nouveau = document.createElement("p");
+      // Sélection de l'élément à remplacer
+      let ancien = document.getElementById("aChanger");
 
-      // Ajouter du contenu à ce nouveau paragraphe
-      nouveau.innerHTML = "Ceci est un nouveau paragraphe ajouté dynamiquement.";
+      // Création d'un nouvel élément <h1>
+      let nouveau = document.createElement("h1");
+      nouveau.textContent = "Nouveau Titre Remplaçant";
 
-      // Attacher le paragraphe au parent
-      zone.appendChild(nouveau);
+      // Remplacement de l’ancien par le nouveau
+      parent.replaceChild(nouveau, ancien);
     }
   </script>
 
