@@ -2,29 +2,32 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Modifier plusieurs éléments</title>
+  <title>Accès aux éléments</title>
 </head>
 <body>
 
-  <!-- Plusieurs éléments avec la même classe -->
-  <p class="par">Paragraphe 1</p>
-  <p class="par">Paragraphe 2</p>
-  <p class="par">Paragraphe 3</p>
+  <h1 id="id1" class="titre">Mon titre</h1>
+  <p class="texte">Paragraphe 1</p>
+  <p class="texte">Paragraphe 2</p>
+  <a href="#" id="lien">Visiter</a>
 
-  <!-- Bouton pour styliser tous les paragraphes -->
-  <button onclick="colorer()">Colorier</button>
+  <button onclick="modifier()">Modifier</button>
 
   <script>
-    function colorer() {
-      // Sélection de tous les éléments avec la classe "par"
-      let paragraphs = document.querySelectorAll(".par");
+    function modifier() {
+      // getElementById
+      document.getElementById("id1").style.color = "red";
 
-      // Parcourir chaque paragraphe et appliquer un style
-      for (let p of paragraphs) {
-        p.style.backgroundColor = "lightgreen";
-        p.style.padding = "10px";
-        p.style.border = "1px solid black";
+      // getElementsByClassName
+      let textes = document.getElementsByClassName("texte");
+      for (let el of textes) {
+        el.style.fontWeight = "bold";
       }
+
+      // setAttribute
+      let lien = document.getElementById("lien");
+      lien.setAttribute("href", "https://www.ofppt.ma");
+      lien.setAttribute("target", "_blank");
     }
   </script>
 
