@@ -2,27 +2,30 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Modifier le contenu</title>
+  <title>Manipulation complète</title>
 </head>
 <body>
 
-  <!-- Élément à modifier -->
-  <h1 id="titre">Bienvenue</h1>
+  <div id="contenu">
+    <h2 id="titre">Titre original</h2>
+  </div>
 
-  <!-- Bouton qui déclenchera l'action -->
-  <button onclick="changerTexte()">Changer le texte</button>
+  <button onclick="modifierPage()">Modifier la page</button>
 
   <script>
-    // Fonction appelée au clic sur le bouton
-    function changerTexte() {
-      // Sélectionner l'élément par son ID
+    function modifierPage() {
       let titre = document.getElementById("titre");
-
-      // Modifier le contenu textuel de l'élément
-      titre.textContent = "Bonjour les stagiaires de l'OFPPT!";
-
-      // Modifier le style de l'élément (changer la couleur du texte)
+      titre.textContent = "Nouveau Titre";
       titre.style.color = "blue";
+
+      // Créer un nouveau paragraphe
+      let p = document.createElement("p");
+      p.innerHTML = "Paragraphe ajouté dynamiquement.";
+      p.style.backgroundColor = "lightyellow";
+      p.setAttribute("class", "nouveau");
+
+      // Ajouter au conteneur
+      document.getElementById("contenu").appendChild(p);
     }
   </script>
 
