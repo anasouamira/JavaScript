@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier plusieurs éléments</title>
+</head>
+<body>
+
+  <!-- Plusieurs éléments avec la même classe -->
+  <p class="par">Paragraphe 1</p>
+  <p class="par">Paragraphe 2</p>
+  <p class="par">Paragraphe 3</p>
+
+  <!-- Bouton pour styliser tous les paragraphes -->
+  <button onclick="colorer()">Colorier</button>
+
+  <script>
+    function colorer() {
+      // Sélection de tous les éléments avec la classe "par"
+      let paragraphs = document.querySelectorAll(".par");
+
+      // Parcourir chaque paragraphe et appliquer un style
+      for (let p of paragraphs) {
+        p.style.backgroundColor = "lightgreen";
+        p.style.padding = "10px";
+        p.style.border = "1px solid black";
+      }
+    }
+  </script>
+
+</body>
+</html>
