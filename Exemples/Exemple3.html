@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un élément</title>
+</head>
+<body>
+
+  <!-- Zone cible pour ajouter des éléments dynamiquement -->
+  <div id="zone"></div>
+
+  <!-- Bouton pour déclencher la création -->
+  <button onclick="ajouterParagraphe()">Ajouter un paragraphe</button>
+
+  <script>
+    function ajouterParagraphe() {
+      // Sélectionner l'élément parent
+      let zone = document.getElementById("zone");
+
+      // Créer un nouvel élément <p>
+      let nouveau = document.createElement("p");
+
+      // Ajouter du contenu à ce nouveau paragraphe
+      nouveau.innerHTML = "Ceci est un nouveau paragraphe ajouté dynamiquement.";
+
+      // Attacher le paragraphe au parent
+      zone.appendChild(nouveau);
+    }
+  </script>
+
+</body>
+</html>
