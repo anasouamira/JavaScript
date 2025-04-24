@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/main.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <img id="Logo" src="Car_Logo.jpg" alt="Logo">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">about</a></li>
+        <li><a href="#"></a></li>
+      </ul>
+      <div class="Mode">
+        <button id="DarkMode"> <span>Dark</span></button>
+        <button id="LightMode"><span>Light</span></button>
+      </div>
+    </nav>
+  </header>
+  <script>
+
+    let DarkMode = document.getElementById('DarkMode');
+
+    DarkMode.addEventListener("click", function () {
+      document.body.style.background = 'black';
+    });
+    DarkMode.addEventListener("click", function () {
+      document.body.style.color = 'white';
+    });
+    DarkMode.addEventListener("click", function () {
+      DarkMode.style.color = 'black';
+    });
+
+    let LightMode = document.getElementById('LightMode');
+
+    LightMode.addEventListener("click", function () {
+      document.body.style.background = 'white';
+    });
+    LightMode.addEventListener("click", function () {
+      document.body.style.color = 'black';
+    });
+    LightMode.addEventListener("click", function () {
+      LightMode.style.color = 'white';
+    });
+  </script>
+</body>
+
+</html>
