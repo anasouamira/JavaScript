@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Commentaires dynamiques</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .commentaire {
+      padding: 10px;
+      margin: 10px 0;
+      background: #f0f0f0;
+      border-left: 5px solid #333;
+      position: relative;
+    }
+    .btn-supprimer {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #zoneCommentaires {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Laissez un commentaire</h2>
+
+  <form id="formCommentaire" onsubmit="ajouterCommentaire(event)">
+    <input type="text" id="champCommentaire" placeholder="Écrivez ici..." style="width: 70%;">
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <div id="zoneCommentaires"></div>
+
+  <script>
+    function ajouterCommentaire(e) {
+      e.preventDefault(); // Empêche la soumission normale
+
+      let champ = document.getElementById("champCommentaire");
+      let texte = champ.value.trim();
+
+      if (texte === "") return;
+
+      // Créer un conteneur commentaire
+      let div = document.createElement("div");
+      div.classList.add("commentaire");
+
+      // Créer le texte
+      let contenu = document.createTextNode(texte);
+      div.appendChild(contenu);
+
+      // Bouton supprimer
+      let btn = document.createElement("button");
+      btn.textContent = "X";
+      btn.classList.add("btn-supprimer");
+      btn.onclick = function () {
+        div.parentNode.removeChild(div);
+      };
+
+      div.appendChild(btn);
+
+      // Ajouter au DOM
+      document.getElementById("zoneCommentaires").appendChild(div);
+
+      // Réinitialiser le champ
+      champ.value = "";
+    }
+
+    // Ajouter commentaire avec la touche "Entrée" sans cliquer sur le bouton
+    document.getElementById("champCommentaire").addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault(); // empêcher retour à la ligne
+        document.querySelector("form").requestSubmit(); // déclencher l'envoi du formulaire
+      }
+    });
+  </script>
+
+</body>
+</html>

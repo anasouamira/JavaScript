@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire DOM</title>
+  <style>
+    .erreur {
+      border: 2px solid red;
+      background-color: #ffe6e6;
+    }
+    .valide {
+      border: 2px solid green;
+      background-color: #e6ffe6;
+    }
+    #resultat {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px dashed gray;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Inscription</h2>
+
+  <form id="formInscription" onsubmit="soumettre(event)">
+    <label>Nom :</label><br>
+    <input type="text" id="nom" class="champ"><br><br>
+
+    <label>Email :</label><br>
+    <input type="email" id="email" class="champ"><br><br>
+
+    <button type="submit">Valider</button>
+  </form>
+
+  <div id="resultat"></div>
+
+  <script>
+    function soumettre(e) {
+      e.preventDefault(); // Empêcher l'envoi normal
+
+      // Sélection des champs
+      let nom = document.getElementById("nom");
+      let email = document.getElementById("email");
+      let resultat = document.getElementById("resultat");
+
+      // Réinitialisation des styles
+      nom.className = "champ";
+      email.className = "champ";
+      resultat.innerHTML = "";
+
+      // Validation simple
+      if (nom.value === "") {
+        nom.classList.add("erreur");
+        return;
+      } else {
+        nom.classList.add("valide");
+      }
+
+      if (email.value === "" || !email.value.includes("@")) {
+        email.classList.add("erreur");
+        return;
+      } else {
+        email.classList.add("valide");
+      }
+
+      // Création d'un nouveau paragraphe avec les infos
+      let p = document.createElement("p");
+      p.innerHTML = `Bienvenue <strong>${nom.value}</strong> ! Votre email est <em>${email.value}</em>.`;
+      p.style.color = "blue";
+
+      // Ajouter au résultat
+      resultat.appendChild(p);
+    }
+  </script>
+
+</body>
+</html>
