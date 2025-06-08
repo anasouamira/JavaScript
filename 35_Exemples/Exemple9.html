@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Examen JavaScript/jQuery</title>
+    <script>
+        // Fonction pour saluer après 2 secondes
+        function saluer() {
+            var titre = prompt("Entrez votre titre (Mr, Mme, Mlle):");
+            var nom = prompt("Entrez votre nom:");
+            var prenom = prompt("Entrez votre prénom:");
+            setTimeout(function () {
+                alert("Salut " + titre + " " + nom + " " + prenom);
+            }, 2000);
+        }
+
+        // Fonction de validation du formulaire
+        function validerForm() {
+            var nb = document.getElementById("nbPersonnes").value;
+            var classeChoisie = document.querySelector('input[name="classe"]:checked');
+
+            if (!nb || nb <= 0) {
+                alert("Le nombre de personnes doit être positif.");
+                return false;
+            }
+
+            if (!classeChoisie) {
+                alert("Veuillez choisir une classe.");
+                return false;
+            }
+
+            alert("Formulaire valide !");
+            return true;
+        }
+
+        // Fonction pour calculer le total
+        function calculer() {
+            var ville = document.getElementById("ville").value;
+            var nb = parseInt(document.getElementById("nbPersonnes").value);
+            var classe = document.querySelector('input[name="classe"]:checked').value;
+
+            var tarifs = {
+                "Kenitra": 30,
+                "Rabat": 50,
+                "Meknès": 90,
+                "Fès": 120,
+                "Oujda": 180
+            };
+
+            var prix = tarifs[ville];
+            if (classe === "1ere") {
+                prix *= 2;
+            }
+
+            var total = prix * nb;
+            document.getElementById("resultat").innerText = "Prix total: " + total + " DHS";
+        }
+
+        // Fonction pour afficher les continents depuis JSON
+        function afficherContinents() {
+            var lesContinents = [
+                {"code": "AF", "nom": "Afrique", "pays": ["maroc", "Egypt"]},
+                {"code": "ER", "nom": "Europe", "pays": ["France", "Espagne", "Suisse"]},
+                {"code": "AM", "nom": "Amerique", "pays": ["US", "Canada", "Mexique"]},
+                {"code": "AS", "nom": "Asie", "pays": ["Japon", "Chine", "Malysie"]},
+                {"code": "Aus", "nom": "Australie", "pays": ["Australie", "Nouvelle-Guinée", "New Zealand"]}
+            ];
+
+            var html = "<ul>";
+            lesContinents.forEach(function (continent) {
+                html += "<li>" + continent.nom + " : " + continent.pays.join(", ") + "</li>";
+            });
+            html += "</ul>";
+
+            document.getElementById("contenu").innerHTML = html;
+        }
+    </script>
+</head>
+<body>
+    <h1>Réservation de billets</h1>
+    <form id="formReservation">
+        Ville de départ: CASA<br>
+        Ville d'arrivée:
+        <select id="ville">
+            <option value="Kenitra">Kenitra</option>
+            <option value="Rabat">Rabat</option>
+            <option value="Meknès">Meknès</option>
+            <option value="Fès">Fès</option>
+            <option value="Oujda">Oujda</option>
+        </select><br><br>
+
+        Nombre de personnes:
+        <input type="number" id="nbPersonnes"><br><br>
+
+        Classe:<br>
+        <input type="radio" name="classe" value="1ere"> 1ère Classe<br>
+        <input type="radio" name="classe" value="2eme"> 2ème Classe<br><br>
+
+        <button type="button" onclick="validerForm()">Valider Formulaire</button>
+        <button type="button" onclick="calculer()">Calculer</button>
+        <button type="button" onclick="saluer()">Saluer</button>
+    </form>
+
+    <div id="resultat"></div>
+
+    <h2>Liste des Continents</h2>
+    <button onclick="afficherContinents()">Afficher Continents</button>
+    <div id="contenu"></div>
+</body>
+</html>
