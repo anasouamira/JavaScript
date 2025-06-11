@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>قائمة المهام - JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        #taskInput {
+            width: 70%;
+        }
+
+        #addBtn {
+            width: 25%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        li.completed span {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .actions button {
+            font-size: 12px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .checkbox {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>قائمة المهام</h2>
+
+    <!-- إدخال مهمة جديدة -->
+    <input type="text" id="taskInput" placeholder="أدخل مهمة جديدة">
+    <button id="addBtn">إضافة</button>
+
+    <!-- قائمة المهام -->
+    <ul id="taskList"></ul>
+
+    <script>
+        // تعريف كائن المهمة
+        class Task {
+            constructor(text) {
+                this.text = text;
+                this.completed = false;
+            }
+
+            toggleStatus() {
+                this.completed = !this.completed;
+            }
+        }
+
+        const taskList = []; // مصفوفة لتخزين كل الكائنات
+
+        const input = document.getElementById("taskInput");
+        const list = document.getElementById("taskList");
+
+        // دالة لإضافة مهمة جديدة
+        function addTask() {
+            const text = input.value.trim();
+            if (text === "") {
+                alert("لا يمكنك إضافة مهمة فارغة!");
+                return;
+            }
+
+            const task = new Task(text); // إنشاء كائن مهمة
+            taskList.push(task);         // تخزينه في المصفوفة
+            renderTask(task);            // عرضه في DOM
+            input.value = "";            // إفراغ الحقل
+        }
+
+        // دالة تعرض مهمة واحدة في الـ DOM
+        function renderTask(task) {
+            const li = document.createElement("li");
+
+            const span = document.createElement("span");
+            span.textContent = task.text;
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "checkbox";
+            checkbox.onchange = () => {
+                task.toggleStatus();
+                li.classList.toggle("completed", task.completed);
+            };
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "حذف";
+            deleteBtn.onclick = () => {
+                list.removeChild(li); // حذف العنصر من الصفحة
+            };
+
+            const actions = document.createElement("div");
+            actions.className = "actions";
+            actions.appendChild(deleteBtn);
+
+            li.appendChild(checkbox);
+            li.appendChild(span);
+            li.appendChild(actions);
+
+            list.appendChild(li);
+        }
+
+        // حدث عند الضغط على زر الإضافة
+        document.getElementById("addBtn").addEventListener("click", addTask);
+
+        // حدث عند الضغط على Enter
+        input.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") addTask();
+        });
+    </script>
+
+</body>
+</html>

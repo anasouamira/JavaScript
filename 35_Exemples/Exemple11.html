@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إدارة الصور باستخدام DOM + تحميل صورة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .card h4 {
+            margin: 10px 0 5px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .actions button {
+            flex: 1;
+            padding: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>معرض الصور المحلي</h2>
+
+    <!-- نموذج لإضافة صورة -->
+    <div class="form-container">
+        <label>تحميل صورة من الجهاز:</label>
+        <input type="file" id="imageFile" accept="image/*">
+
+        <label>عنوان البطاقة:</label>
+        <input type="text" id="imageTitle" placeholder="اكتب عنوانًا للصورة">
+
+        <button onclick="addCard()">إضافة البطاقة</button>
+    </div>
+
+    <!-- المعرض -->
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        function addCard() {
+            const fileInput = document.getElementById("imageFile");
+            const title = document.getElementById("imageTitle").value.trim();
+            const file = fileInput.files[0]; // أول ملف تم تحميله
+
+            if (!file || !title) {
+                alert("يرجى اختيار صورة وكتابة عنوان!");
+                return;
+            }
+
+            const reader = new FileReader();
+
+            // بعد قراءة الصورة، سيتم تشغيل هذا الحدث
+            reader.onload = function(event) {
+                const imageUrl = event.target.result;
+
+                // إنشاء عناصر HTML
+                const card = document.createElement("div");
+                card.className = "card";
+
+                const img = document.createElement("img");
+                img.src = imageUrl;
+
+                const h4 = document.createElement("h4");
+                h4.textContent = title;
+
+                const actions = document.createElement("div");
+                actions.className = "actions";
+
+                const editBtn = document.createElement("button");
+                editBtn.textContent = "تعديل العنوان";
+                editBtn.onclick = () => {
+                    const newTitle = prompt("اكتب العنوان الجديد:", h4.textContent);
+                    if (newTitle) {
+                        h4.textContent = newTitle;
+                    }
+                };
+
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "حذف البطاقة";
+                deleteBtn.onclick = () => card.remove();
+
+                actions.appendChild(editBtn);
+                actions.appendChild(deleteBtn);
+
+                card.appendChild(img);
+                card.appendChild(h4);
+                card.appendChild(actions);
+
+                document.getElementById("gallery").appendChild(card);
+
+                // إعادة تعيين النموذج
+                fileInput.value = "";
+                document.getElementById("imageTitle").value = "";
+            };
+
+            // قراءة محتوى الصورة كـ Base64
+            reader.readAsDataURL(file);
+        }
+    </script>
+
+</body>
+</html>

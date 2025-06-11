@@ -19,7 +19,7 @@
         list.appendChild(li);                                 // Add to list
 
         input.value = "";                                     // Clear input
-        output.textContent = `✔️ Added item: ${newText}`;     // Update message
+        output.textContent = `Added item: ${newText}`;     // Update message
       } else {
         output.textContent = "⚠️ Please enter a value.";
       }

@@ -1,7 +1,7 @@
 function useSelectors() {
       // ID selector
       const title = document.getElementById("mainTitle");
-      title.textContent = "🆔 Changed by ID";
+      title.textContent = "Changed by ID";
 
       // Class selector (returns HTMLCollection)
       const paragraphs = document.getElementsByClassName("desc");
@@ -14,12 +14,12 @@ function useSelectors() {
 
       // querySelector (CSS style - only first match)
       const firstHighlight = document.querySelector(".highlight");
-      firstHighlight.textContent = "🎯 Selected with querySelector";
+      firstHighlight.textContent = "Selected with querySelector";
 
       // querySelectorAll (NodeList - all matches)
       const allParagraphs = document.querySelectorAll(".desc");
       allParagraphs.forEach(p => p.style.color = "blue");
 
       // Output message
-      document.getElementById("result").textContent = "✅ Element selectors applied!";
+      document.getElementById("result").textContent = "Element selectors applied!";
     }
